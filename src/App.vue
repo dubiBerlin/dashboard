@@ -1,5 +1,13 @@
 <template>
-  <v-app>
+  <v-app>  
+    <!--  -->
+    <v-app-bar app color="primary" dark >
+    <v-toolbar-title>Vue Dashboard</v-toolbar-title>
+    <v-spacer></v-spacer>
+    <v-btn>Home</v-btn>
+    <v-btn>Login</v-btn>
+    </v-app-bar>
+    <v-content>
     <v-card width="400" class="mx-auto mt-5" >
       <v-card-title>
         <h1 class="display">Login</h1>
@@ -18,6 +26,7 @@
         <v-btn color="info">Login</v-btn>
       </v-card-actions>
     </v-card>
+    </v-content>
   </v-app>
 </template>
 
