@@ -9,10 +9,9 @@
       :key="`${link.label}-footer-link`"
       text 
       rounded 
-      to="{link.url}" >{{link.label}}</v-btn>
+      :to="link.url" >{{link.label}}</v-btn>
     </v-app-bar>
     <v-content>
-      <!-- <Login></Login> -->
       <router-view></router-view>
     </v-content>
     <template>
@@ -58,13 +57,20 @@ export default {
   },
 
   data: () => ({
-    links:[{
-      label:"Home",
-      url:"/"
+    links:[
+      {
+        label:"Home",
+        url:"/"
       },
-      {label: "Login",
-      url:"/login"
-    }]
+      {
+        label: "Login",
+        url:"/login"
+      },
+      {
+        label: "Dashboard",
+        url:"/dashboard"
+      }
+    ]
   }),
 };
 </script>
