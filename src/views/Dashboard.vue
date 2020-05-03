@@ -25,9 +25,12 @@
 </template>
 <script>
 
+  import employeesJson from "../data/employees.json";
+
   export default {
     data () {
       return {
+        employees:employeesJson,
         rowData:"",
         snackbar:false,
         headers: [
