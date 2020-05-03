@@ -39,8 +39,13 @@
         snackbar:false,
         headersEmployees:[
           {
-            text: 'Name',
+            text: 'Employee Id',
             align: 'start',
+            sortable: true,
+            value: 'id'
+          },
+          {
+            text: 'Name',
             sortable: true,
             value: 'name'
           },
