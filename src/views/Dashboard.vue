@@ -1,15 +1,35 @@
 <template>
+  <div>
   <v-data-table
     :headers="headers"
     :items="desserts"
     :items-per-page="5"
     class="elevation-1"
+    @click:row="rowClick"
   ></v-data-table>
+
+
+   <v-snackbar
+      v-model="snackbar"
+    >
+     {{rowData}}
+      <v-btn
+        color="pink"
+        text
+        @click="snackbar = false"
+      >
+        Close
+      </v-btn>
+    </v-snackbar>
+  </div>
 </template>
 <script>
+
   export default {
     data () {
       return {
+        rowData:"",
+        snackbar:false,
         headers: [
           {
             text: 'Dessert (100g serving)',
@@ -107,6 +127,12 @@
         ],
       }
     },
+    methods:{
+      rowClick(event){
+        this.rowData = event;
+        this.snackbar = true;
+      }
+    }
   }
 </script>
 <style >
