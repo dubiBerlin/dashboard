@@ -1,18 +1,21 @@
 <template>
   <div>
   <v-data-table
-    :headers="headers"
-    :items="desserts"
+    v-model="selected"
+    :headers="headersEmployees"
+    :items="employees"
     :items-per-page="5"
     class="elevation-1"
     @click:row="rowClick"
+    show-select
+    :single-select="true"
   ></v-data-table>
 
 
    <v-snackbar
       v-model="snackbar"
     >
-     {{rowData}}
+     {{rowData.name}} : {{ rowData.title}}
       <v-btn
         color="pink"
         text
@@ -30,9 +33,29 @@
   export default {
     data () {
       return {
+        selected:[],
         employees:employeesJson,
         rowData:"",
         snackbar:false,
+        headersEmployees:[
+          {
+            text: 'Name',
+            align: 'start',
+            sortable: true,
+            value: 'name'
+          },
+          { 
+            text: 'Title',
+            sortable: true,
+            value: 'title' 
+          },
+          { 
+            
+            text: 'Salary',
+            sortable: true,
+            value: 'salary' 
+          }
+        ],
         headers: [
           {
             text: 'Dessert (100g serving)',
@@ -133,6 +156,8 @@
     methods:{
       rowClick(event){
         this.rowData = event;
+        console.log("rowData: ",this.rowData);
+        console.log("SELECTED: ",this.selected)
         this.snackbar = true;
       }
     }
