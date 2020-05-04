@@ -72,9 +72,6 @@
         console.log("SELECTED: ",this.selected)
         this.snackbar = true;
       }
-    },
-    created(){
-      console.log("created")
     }
   }
 </script>
