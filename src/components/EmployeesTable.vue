@@ -2,7 +2,7 @@
   <div>
   <v-data-table
     v-model="selected"
-    :headers="headersEmployees"
+    :headers="headers"
     :items="employees"
     :items-per-page="5"
     class="elevation-1"
@@ -27,14 +27,16 @@
   </div>
 </template>
 <script>
-
-  import employeesJson from "../data/employees.json";
-
   export default {
+    props:{
+      employees:{
+        type:Array,
+        required:true
+      }
+    },
     data () {
       return {
         selected:[],
-        employees:employeesJson,
         rowData:"",
         snackbar:false,
         headers:[
@@ -70,6 +72,9 @@
         console.log("SELECTED: ",this.selected)
         this.snackbar = true;
       }
+    },
+    created(){
+      console.log("created")
     }
   }
 </script>

@@ -1,66 +1,24 @@
 <template>
   <div>
-  <v-data-table
-    v-model="selected"
-    :headers="headersEmployees"
-    :items="employees"
-    :items-per-page="5"
-    class="elevation-1"
-    @click:row="rowClick"
-    show-select
-    :single-select="true"
-  ></v-data-table>
-
-
-   <v-snackbar
-      v-model="snackbar"
-    >
-     {{rowData.name}} : {{ rowData.title}}
-      <v-btn
-        color="pink"
-        text
-        @click="snackbar = false"
-      >
-        Close
-      </v-btn>
-    </v-snackbar>
+    <EmployeesTable :employees="employees" ></EmployeesTable>
   </div>
 </template>
 <script>
 
   import employeesJson from "../data/employees.json";
+  import EmployeesTable from "../components/EmployeesTable";
 
   export default {
+     name: 'DashboardPage',
+    components: {
+      EmployeesTable
+    },
     data () {
       return {
-        selected:[],
         employees:employeesJson,
+        selected:[],
         rowData:"",
-        snackbar:false,
-        headers:[
-          {
-            text: 'Employee Id',
-            align: 'start',
-            sortable: true,
-            value: 'id'
-          },
-          {
-            text: 'Name',
-            sortable: true,
-            value: 'name'
-          },
-          { 
-            text: 'Title',
-            sortable: true,
-            value: 'title' 
-          },
-          { 
-            
-            text: 'Salary',
-            sortable: true,
-            value: 'salary' 
-          }
-        ]
+        snackbar:false
       }
     },
     methods:{
