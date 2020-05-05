@@ -1,6 +1,7 @@
 <template>
   <div>
     <SalesGraph v-for="sale in sales" :key="`${sale.title}`" :sale="sale"></SalesGraph>
+    <StatisticCard v-for="(statistic,index) in statistics" :statistic="statistic" :key="index" ></StatisticCard>
     <EmployeesTable :employees="employees" @select-employee="setEmployee" ></EmployeesTable>
     
 
@@ -22,17 +23,21 @@
 
   import employeesJson from "../data/employees.json";
   import salesJson from "../data/sales.json";
+  import statisticsJson from "../data/statistics.json";
   import EmployeesTable from "../components/EmployeesTable";
   import SalesGraph from "../components/SalesGraph";
+  import StatisticCard from "../components/StatisticCard";
 
   export default {
     name: 'DashboardPage',
     components: {
       EmployeesTable,
-      SalesGraph
+      SalesGraph,
+      StatisticCard
     },
     data () {
       return {
+        statistics:statisticsJson,
         employees:employeesJson,
         sales:salesJson,
         employee:"",
