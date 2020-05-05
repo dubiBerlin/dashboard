@@ -11,19 +11,6 @@
     :single-select="true"
   ></v-data-table>
 
-
-   <v-snackbar
-      v-model="snackbar"
-    >
-     {{rowData.name}} : {{ rowData.title}}
-      <v-btn
-        color="pink"
-        text
-        @click="snackbar = false"
-      >
-        Close
-      </v-btn>
-    </v-snackbar>
   </div>
 </template>
 <script>
@@ -37,7 +24,6 @@
     data () {
       return {
         selected:[],
-        rowData:"",
         snackbar:false,
         headers:[
           {
@@ -67,10 +53,9 @@
     },
     methods:{
       rowClick(event){
-        this.rowData = event;
-        console.log("rowData: ",this.rowData);
+        console.log("rowData: ",event);
         console.log("SELECTED: ",this.selected)
-        this.snackbar = true;
+        this.$emit('select-employee', event)
       }
     }
   }
