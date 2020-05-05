@@ -10,16 +10,21 @@
              >
         <SalesGraph  :sale="sale"></SalesGraph>
       </v-col>
-    </v-row>
+    </v-row> 
     
     <v-row >
       <v-col v-for="(statistic,index) in statistics" :key="index">
         <StatisticCard  :statistic="statistic" ></StatisticCard>
       </v-col>
     </v-row>
-    <EmployeesTable :employees="employees" @select-employee="setEmployee" ></EmployeesTable>
-    <EventTimeline  :timeline="timeline"  ></EventTimeline>
-
+    <v-row>
+      <v-col cols="12" md="8">
+        <EmployeesTable :employees="employees" @select-employee="setEmployee" ></EmployeesTable>
+      </v-col>
+      <v-col  cols="12" md="4">
+        <EventTimeline  :timeline="timeline"  ></EventTimeline>
+      </v-col>
+    </v-row>
    <v-snackbar v-model="snackbar">
      <span>Name: {{employee.name}}</span> 
      <span style="margin-left: 20px">Title: {{employee.title}}</span> 
