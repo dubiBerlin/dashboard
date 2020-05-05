@@ -1,21 +1,34 @@
 <template>
-  <div>
-  <v-data-table
-    v-model="selected"
-    :headers="headersEmployees"
-    :items="employees"
-    :items-per-page="5"
-    class="elevation-1"
-    @click:row="rowClick"
-    show-select
-    :single-select="true"
-  ></v-data-table>
+  <v-container :fluid="true">
 
-
-   <v-snackbar
-      v-model="snackbar"
-    >
-     {{rowData.name}} : {{ rowData.title}}
+    <v-row >
+      <v-col v-for="sale in sales" 
+            :key="`${sale.title}`"  
+            no-gutters
+            cols="12"
+            sm="4"
+             >
+        <SalesGraph  :sale="sale"></SalesGraph>
+      </v-col>
+    </v-row> 
+    
+    <v-row >
+      <v-col v-for="(statistic,index) in statistics" :key="index">
+        <StatisticCard  :statistic="statistic" ></StatisticCard>
+      </v-col>
+    </v-row>
+    <v-row>
+      <v-col cols="12" md="8">
+        <EmployeesTable :employees="employees" @select-employee="setEmployee" ></EmployeesTable>
+      </v-col>
+      <v-col  cols="12" md="4">
+        <EventTimeline  :timeline="timeline"  ></EventTimeline>
+      </v-col>
+    </v-row>
+   <v-snackbar v-model="snackbar">
+     <span>Name: {{employee.name}}</span> 
+     <span style="margin-left: 20px">Title: {{employee.title}}</span> 
+     <span style="margin-left: 20px">Salary: {{employee.salary}}</span> 
       <v-btn
         color="pink"
         text
@@ -24,140 +37,42 @@
         Close
       </v-btn>
     </v-snackbar>
-  </div>
+  </v-container>
 </template>
 <script>
 
   import employeesJson from "../data/employees.json";
+  import salesJson from "../data/sales.json";
+  import statisticsJson from "../data/statistics.json";
+  import timelineJson from "../data/timeline.json";
+  import EmployeesTable from "../components/EmployeesTable";
+  import SalesGraph from "../components/SalesGraph";
+  import StatisticCard from "../components/StatisticCard";
+  import EventTimeline from "../components/EventTimeline";
 
   export default {
+    name: 'DashboardPage',
+    components: {
+      EmployeesTable,
+      SalesGraph,
+      StatisticCard,
+      EventTimeline
+    },
     data () {
       return {
-        selected:[],
+        timeline:timelineJson,
+        statistics:statisticsJson,
         employees:employeesJson,
+        sales:salesJson,
+        employee:"",
+        selected:[],
         rowData:"",
-        snackbar:false,
-        headersEmployees:[
-          {
-            text: 'Name',
-            align: 'start',
-            sortable: true,
-            value: 'name'
-          },
-          { 
-            text: 'Title',
-            sortable: true,
-            value: 'title' 
-          },
-          { 
-            
-            text: 'Salary',
-            sortable: true,
-            value: 'salary' 
-          }
-        ],
-        headers: [
-          {
-            text: 'Dessert (100g serving)',
-            align: 'start',
-            sortable: false,
-            value: 'name',
-          },
-          { text: 'Calories', value: 'calories' },
-          { text: 'Fat (g)', value: 'fat' },
-          { text: 'Carbs (g)', value: 'carbs' },
-          { text: 'Protein (g)', value: 'protein' },
-          { text: 'Iron (%)', value: 'iron' },
-        ],
-        desserts: [
-          {
-            name: 'Frozen Yogurt',
-            calories: 159,
-            fat: 6.0,
-            carbs: 24,
-            protein: 4.0,
-            iron: '1%',
-          },
-          {
-            name: 'Ice cream sandwich',
-            calories: 237,
-            fat: 9.0,
-            carbs: 37,
-            protein: 4.3,
-            iron: '1%',
-          },
-          {
-            name: 'Eclair',
-            calories: 262,
-            fat: 16.0,
-            carbs: 23,
-            protein: 6.0,
-            iron: '7%',
-          },
-          {
-            name: 'Cupcake',
-            calories: 305,
-            fat: 3.7,
-            carbs: 67,
-            protein: 4.3,
-            iron: '8%',
-          },
-          {
-            name: 'Gingerbread',
-            calories: 356,
-            fat: 16.0,
-            carbs: 49,
-            protein: 3.9,
-            iron: '16%',
-          },
-          {
-            name: 'Jelly bean',
-            calories: 375,
-            fat: 0.0,
-            carbs: 94,
-            protein: 0.0,
-            iron: '0%',
-          },
-          {
-            name: 'Lollipop',
-            calories: 392,
-            fat: 0.2,
-            carbs: 98,
-            protein: 0,
-            iron: '2%',
-          },
-          {
-            name: 'Honeycomb',
-            calories: 408,
-            fat: 3.2,
-            carbs: 87,
-            protein: 6.5,
-            iron: '45%',
-          },
-          {
-            name: 'Donut',
-            calories: 452,
-            fat: 25.0,
-            carbs: 51,
-            protein: 4.9,
-            iron: '22%',
-          },
-          {
-            name: 'KitKat',
-            calories: 518,
-            fat: 26.0,
-            carbs: 65,
-            protein: 7,
-            iron: '6%',
-          },
-        ],
+        snackbar:false
       }
     },
     methods:{
-      rowClick(event){
-        this.rowData = event;
-        console.log("rowData: ",this.rowData);
-        console.log("SELECTED: ",this.selected)
+      setEmployee(empl){
+        this.employee = empl;
         this.snackbar = true;
       }
     }
