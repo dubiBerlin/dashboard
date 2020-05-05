@@ -1,7 +1,22 @@
 <template>
-  <div>
-    <SalesGraph v-for="sale in sales" :key="`${sale.title}`" :sale="sale"></SalesGraph>
-    <StatisticCard v-for="(statistic,index) in statistics" :statistic="statistic" :key="index" ></StatisticCard>
+  <v-container :fluid="true">
+
+    <v-row >
+      <v-col v-for="sale in sales" 
+            :key="`${sale.title}`"  
+            no-gutters
+            cols="12"
+            sm="4"
+             >
+        <SalesGraph  :sale="sale"></SalesGraph>
+      </v-col>
+    </v-row>
+    
+    <v-row >
+      <v-col v-for="(statistic,index) in statistics" :key="index">
+        <StatisticCard  :statistic="statistic" ></StatisticCard>
+      </v-col>
+    </v-row>
     <EmployeesTable :employees="employees" @select-employee="setEmployee" ></EmployeesTable>
     <EventTimeline  :timeline="timeline"  ></EventTimeline>
 
@@ -17,7 +32,7 @@
         Close
       </v-btn>
     </v-snackbar>
-  </div>
+  </v-container>
 </template>
 <script>
 
