@@ -6,7 +6,7 @@
             :key="`${sale.title}`"  
             no-gutters
             cols="12"
-            sm="4"
+            md="4"
              >
         <SalesGraph  :sale="sale"></SalesGraph>
       </v-col>
