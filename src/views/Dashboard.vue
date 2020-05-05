@@ -25,7 +25,7 @@
         <EventTimeline  :timeline="timeline"  ></EventTimeline>
       </v-col>
     </v-row>
-   <v-snackbar v-model="snackbar">
+   <v-snackbar v-model="snackbar" :left="$vuetify.breakpoint.lgAndUp"  >
      <span>Name: {{employee.name}}</span> 
      <span style="margin-left: 20px">Title: {{employee.title}}</span> 
      <span style="margin-left: 20px">Salary: {{employee.salary}}</span> 
