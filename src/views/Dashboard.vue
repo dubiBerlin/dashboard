@@ -1,5 +1,6 @@
 <template>
   <div>
+    <SalesGraph v-for="sale in sales" :key="`${sale.title}`" :sale="sale"></SalesGraph>
     <EmployeesTable :employees="employees" @select-employee="setEmployee" ></EmployeesTable>
     
 
@@ -20,16 +21,20 @@
 <script>
 
   import employeesJson from "../data/employees.json";
+  import salesJson from "../data/sales.json";
   import EmployeesTable from "../components/EmployeesTable";
+  import SalesGraph from "../components/SalesGraph";
 
   export default {
     name: 'DashboardPage',
     components: {
-      EmployeesTable
+      EmployeesTable,
+      SalesGraph
     },
     data () {
       return {
         employees:employeesJson,
+        sales:salesJson,
         employee:"",
         selected:[],
         rowData:"",
