@@ -1,6 +1,5 @@
 <template>
   <v-container :fluid="true">
-
     <v-row >
       <v-col v-for="sale in sales" 
             :key="`${sale.title}`"  
@@ -13,7 +12,11 @@
     </v-row> 
     
     <v-row >
-      <v-col v-for="(statistic,index) in statistics" :key="index">
+      <v-col v-for="(statistic,index) in statistics" 
+            :key="index"  
+            cols="12"
+            md="6"
+            lg="3" >
         <StatisticCard  :statistic="statistic" ></StatisticCard>
       </v-col>
     </v-row>
@@ -65,7 +68,6 @@
         employees:employeesJson,
         sales:salesJson,
         employee:"",
-        selected:[],
         rowData:"",
         snackbar:false
       }
