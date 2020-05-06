@@ -1,19 +1,22 @@
 <template>
   <v-container :fluid="true">
-
     <v-row >
       <v-col v-for="sale in sales" 
             :key="`${sale.title}`"  
             no-gutters
             cols="12"
-            sm="4"
+            md="4"
              >
         <SalesGraph  :sale="sale"></SalesGraph>
       </v-col>
     </v-row> 
     
     <v-row >
-      <v-col v-for="(statistic,index) in statistics" :key="index">
+      <v-col v-for="(statistic,index) in statistics" 
+            :key="index"  
+            cols="12"
+            md="6"
+            lg="3" >
         <StatisticCard  :statistic="statistic" ></StatisticCard>
       </v-col>
     </v-row>
@@ -25,7 +28,7 @@
         <EventTimeline  :timeline="timeline"  ></EventTimeline>
       </v-col>
     </v-row>
-   <v-snackbar v-model="snackbar">
+   <v-snackbar v-model="snackbar" :left="$vuetify.breakpoint.lgAndUp"  >
      <span>Name: {{employee.name}}</span> 
      <span style="margin-left: 20px">Title: {{employee.title}}</span> 
      <span style="margin-left: 20px">Salary: {{employee.salary}}</span> 
@@ -65,7 +68,6 @@
         employees:employeesJson,
         sales:salesJson,
         employee:"",
-        selected:[],
         rowData:"",
         snackbar:false
       }
