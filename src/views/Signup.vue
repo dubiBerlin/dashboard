@@ -11,7 +11,6 @@
 
       <v-text-field
         v-model="email"
-        :rules="emailRules"
         label="E-mail"
         required
       ></v-text-field>
@@ -23,9 +22,11 @@
         label="Select using Browser"
         required
       ></v-autocomplete>
-
       <v-file-input multiple label="Profile Picture"></v-file-input>
-
+      <v-text-field label="Birthday" v-model="birthday"  readonly ></v-text-field>
+      <v-date-picker
+        v-model="birthday"
+      ></v-date-picker>
        <v-checkbox
         v-model="agreed"
         label="Agree on Terms"
@@ -55,11 +56,15 @@ export default {
       selectBrowser:"",
       items:["Chrome","FireFox","Opera"],
       agreed:false,
-
+      birthday:"",
+      valid:""
     }
   },
   methods:{
     validate(){
+
+    },
+    emailRules(){
 
     }
   }
