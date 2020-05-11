@@ -1,6 +1,8 @@
 <template>
-  <div  style="width:550px; margin:0 auto">
-  <v-card >
+<v-container>
+  <v-row>
+  <v-col >
+    <h1>Signup</h1>
     <v-form
       ref="form"
       v-model="valid"
@@ -14,13 +16,13 @@
         required
       ></v-text-field>
 
-      <v-select
+      <v-autocomplete
         v-model="selectBrowser"
         :items="items"
         :rules="[v => !!v || 'Item is required']"
-        label="Browser"
+        label="Select using Browser"
         required
-      ></v-select>
+      ></v-autocomplete>
 
       <v-file-input multiple label="Profile Picture"></v-file-input>
 
@@ -39,7 +41,9 @@
         Validate
       </v-btn>
     </v-form>
-  </v-card></div>
+    </v-col>
+  </v-row>
+  </v-container>
 </template>
 
 <script>
