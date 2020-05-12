@@ -1,7 +1,7 @@
 <template>
-<v-container>
-  <v-row>
-  <v-col >
+<v-container >
+  <v-row  style="width:50%; margin: 0 auto; padding: 10px;">
+  <v-col>
     <h1>Signup</h1>
     <v-form
       ref="form"
@@ -29,17 +29,16 @@
       ></v-date-picker>
        <v-checkbox
         v-model="agreed"
-        label="Agree on Terms"
+        label="Agree on Terms & Conditions"
         color="red"
         value="red"
         hide-details
       ></v-checkbox>
       <v-btn
-        color="success"
-        class="mr-4"
-        @click="validate"
+        type="submit"
+        color="primary"
       >
-        Validate
+        Submit
       </v-btn>
     </v-form>
     </v-col>
