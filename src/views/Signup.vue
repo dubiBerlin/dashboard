@@ -33,6 +33,7 @@
         color="red"
         value="red"
         hide-details
+        :rules="agreeToTermsRules"
       ></v-checkbox>
       <v-btn
         type="submit"
@@ -51,9 +52,10 @@ export default {
   name: "Signup",
   data(){
     return{
+      agreeToTermsRules:[value=>!!value || "You must agree to the terms and conditions to sign up for an account!" ],
       email:"",
       selectBrowser:"",
-      items:["Chrome","FireFox","Opera"],
+      items:["Chrome","FireFox","Opera", "Edge","Brave"],
       agreed:false,
       birthday:"",
       valid:""
