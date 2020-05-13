@@ -4,7 +4,7 @@
   <v-col>
     <h1>Signup</h1>
     <v-form
-      ref="form"
+      ref="signUpForm"
       v-model="valid"
       lazy-validation
     >
@@ -42,8 +42,8 @@
       >
         Submit
       </v-btn>
-      <v-btn color="warning">Reset Validation</v-btn>
-      <v-btn color="error">Reset</v-btn>
+      <v-btn color="warning" @click="resetValidation" >Reset Validation</v-btn>
+      <v-btn color="error" @click="resetForm" >Reset</v-btn>
     </v-form>
     </v-col>
   </v-row>
@@ -72,8 +72,11 @@ export default {
     }
   },
   methods:{
-    validate(){
-
+    resetForm(){
+      this.$refs.signUpForm.reset();
+    },
+    resetValidation(){
+      this.$refs.signUpForm.resetValidation();
     }
   }
 }
