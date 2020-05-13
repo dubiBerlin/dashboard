@@ -39,10 +39,11 @@
       <v-btn
         type="submit"
         color="primary"
+        class="mr-4" 
       >
         Submit
       </v-btn>
-      <v-btn color="warning" @click="resetValidation" >Reset Validation</v-btn>
+      <v-btn class="mr-4" color="warning" @click="resetValidation" >Reset Validation</v-btn>
       <v-btn color="error" @click="resetForm" >Reset</v-btn>
     </v-form>
     </v-col>
