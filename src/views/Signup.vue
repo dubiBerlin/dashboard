@@ -40,6 +40,7 @@
         type="submit"
         color="primary"
         class="mr-4" 
+        :disabled="valid"
       >
         Submit
       </v-btn>
@@ -62,7 +63,7 @@ export default {
       items:["Chrome","FireFox","Opera", "Edge","Brave"],
       agreed:false,
       birthday:"",
-      valid:"",
+      valid:false,
       emailRules:[
         value => !!value || "Email is required",
         value => value.indexOf("@")!==0 || "Email should have a username.",
