@@ -42,6 +42,8 @@
       >
         Submit
       </v-btn>
+      <v-btn color="warning">Reset Validation</v-btn>
+      <v-btn color="error">Reset</v-btn>
     </v-form>
     </v-col>
   </v-row>
