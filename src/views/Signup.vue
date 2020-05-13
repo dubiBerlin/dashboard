@@ -13,6 +13,7 @@
         v-model="email"
         label="E-mail"
         required
+        :rules="emailRules"
       ></v-text-field>
 
       <v-autocomplete
@@ -32,8 +33,8 @@
         label="Agree on Terms & Conditions"
         color="red"
         value="red"
-        hide-details
         :rules="agreeToTermsRules"
+        required
       ></v-checkbox>
       <v-btn
         type="submit"
@@ -58,14 +59,18 @@ export default {
       items:["Chrome","FireFox","Opera", "Edge","Brave"],
       agreed:false,
       birthday:"",
-      valid:""
+      valid:"",
+      emailRules:[
+        value => !!value || "Email is required",
+        value => value.indexOf("@")!==0 || "Email should have a username.",
+        value => value.includes("@") || "Email should include an @ symbol.",
+        value => value.indexOf(".") - value.indexOf("@") > 1 || "Email should contain a valid domain.",
+        value => value.indexOf(".") <= value.length - 3 || "Email should contain a valid domain extension."
+         ]
     }
   },
   methods:{
     validate(){
-
-    },
-    emailRules(){
 
     }
   }
