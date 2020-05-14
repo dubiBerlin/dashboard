@@ -28,6 +28,26 @@
         <EventTimeline  :timeline="timeline"  ></EventTimeline>
       </v-col>
     </v-row>
+
+   <v-row id="below-the-fold">
+      <v-col cols="12" md="8">
+        <EmployeesTable :employees="employees" @select-employee="setEmployee" />
+      </v-col>
+      <v-col cols="12" md="4">
+        <EventTimeline :timeline="timeline" />
+      </v-col>
+    </v-row>
+
+    <v-row id="more-content">
+      <v-col>
+        <v-skeleton-loader
+          ref="skeleton"
+          type="table"
+          class="mx-auto"
+        ></v-skeleton-loader>
+      </v-col>
+    </v-row>
+
    <v-snackbar v-model="snackbar" :left="$vuetify.breakpoint.lgAndUp"  >
      <span>Name: {{employee.name}}</span> 
      <span style="margin-left: 20px">Title: {{employee.title}}</span> 
