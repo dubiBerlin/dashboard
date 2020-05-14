@@ -80,12 +80,8 @@ export default {
   methods:{
     toggleTheme(){
        this.$vuetify.theme.dark = !this.$vuetify.theme.dark ;
-        console.log(this.$vuetify.theme);
+       this.$vuetify.theme.themes.dark.anchor="#eee";
     }
-  },
-  mounted(){
-    
-    console.log(this.$vuetify.theme);
   }
 };
 </script>
