@@ -53,8 +53,6 @@
     },
     methods:{
       rowClick(event){
-        console.log("rowData: ",event);
-        console.log("SELECTED: ",this.selected)
         this.$emit('select-employee', event)
       }
     }

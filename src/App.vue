@@ -10,6 +10,7 @@
       text 
       rounded 
       :to="link.url" >{{link.label}}</v-btn>
+      <v-btn @click="toggleTheme">Toggle Theme</v-btn>
     </v-app-bar>
     <v-content>
       <router-view></router-view>
@@ -76,5 +77,15 @@ export default {
       }
     ]
   }),
+  methods:{
+    toggleTheme(){
+       this.$vuetify.theme.dark = !this.$vuetify.theme.dark ;
+        console.log(this.$vuetify.theme);
+    }
+  },
+  mounted(){
+    
+    console.log(this.$vuetify.theme);
+  }
 };
 </script>
