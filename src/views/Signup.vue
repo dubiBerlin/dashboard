@@ -1,12 +1,11 @@
 <template>
 <v-container >
-  <v-row  style="width:50%; margin: 0 auto; padding: 10px;">
+  <v-row  style="width:70%; margin: 0 auto; padding: 10px;">
   <v-col>
     <h1>Signup</h1>
     <v-form
       ref="signUpForm"
-      v-model="valid"
-      lazy-validation
+      v-model="formValided"
     >
 
       <v-text-field
@@ -19,12 +18,14 @@
       <v-autocomplete
         v-model="selectBrowser"
         :items="items"
-        :rules="[v => !!v || 'Item is required']"
         label="Select using Browser"
-        required
       ></v-autocomplete>
       <v-file-input multiple label="Profile Picture"></v-file-input>
-      <v-text-field label="Birthday" v-model="birthday"  readonly ></v-text-field>
+      <v-text-field 
+        label="Birthday" 
+        v-model="birthday"  
+        readonly 
+      ></v-text-field>
       <v-date-picker
         v-model="birthday"
       ></v-date-picker>
@@ -32,7 +33,6 @@
         v-model="agreed"
         label="Agree on Terms & Conditions"
         color="red"
-        value="red"
         :rules="agreeToTermsRules"
         required
       ></v-checkbox>
@@ -40,10 +40,11 @@
         type="submit"
         color="primary"
         class="mr-4" 
-        :disabled="valid"
+        :disabled="!formValided"
       >
         Submit
       </v-btn>
+      <v-btn class="mr-4" color="success" @click="validateForm" >Validate Form</v-btn>
       <v-btn class="mr-4" color="warning" @click="resetValidation" >Reset Validation</v-btn>
       <v-btn color="error" @click="resetForm" >Reset</v-btn>
     </v-form>
@@ -63,11 +64,12 @@ export default {
       items:["Chrome","FireFox","Opera", "Edge","Brave"],
       agreed:false,
       birthday:"",
-      valid:false,
+      formValided:false,
       emailRules:[
         value => !!value || "Email is required",
         value => value.indexOf("@")!==0 || "Email should have a username.",
         value => value.includes("@") || "Email should include an @ symbol.",
+        value => value.includes('.') || 'Email should include a period symbol.',
         value => value.indexOf(".") - value.indexOf("@") > 1 || "Email should contain a valid domain.",
         value => value.indexOf(".") <= value.length - 3 || "Email should contain a valid domain extension."
          ]
@@ -79,6 +81,9 @@ export default {
     },
     resetValidation(){
       this.$refs.signUpForm.resetValidation();
+    },
+    validateForm(){
+      this.$refs.signUpForm.validate();
     }
   }
 }
