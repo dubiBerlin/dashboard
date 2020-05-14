@@ -38,7 +38,7 @@
       </v-col>
     </v-row>
 
-    <v-row id="more-content">
+    <v-row v-if="loadNewContent"  id="more-content">
       <v-col>
         <v-skeleton-loader
           ref="skeleton"
@@ -83,6 +83,7 @@
     },
     data () {
       return {
+        loadNewContent:false,
         timeline:timelineJson,
         statistics:statisticsJson,
         employees:employeesJson,
