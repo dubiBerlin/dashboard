@@ -29,7 +29,7 @@
       </v-col>
     </v-row>
 
-   <v-row id="below-the-fold">
+   <v-row id="below-the-fold" v-intersect="showMoreContent" >
       <v-col cols="12" md="8">
         <EmployeesTable :employees="employees" @select-employee="setEmployee" />
       </v-col>
@@ -97,6 +97,9 @@
       setEmployee(empl){
         this.employee = empl;
         this.snackbar = true;
+      },
+      showMoreContent(entries){
+        this.loadNewContent = entries[0].isIntersecting;
       }
     }
   }
